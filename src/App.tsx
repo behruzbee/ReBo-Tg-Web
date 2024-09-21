@@ -1,10 +1,10 @@
+import { useInitData } from '@vkruglikov/react-telegram-web-app'
 import './app.css'
-import useTelegram from './hooks/useTelegram'
 
 const App = () => {
-  const { user } = useTelegram()
+  const [initDataUnsafe] = useInitData()
   return (
-    <div>{user?.username || 'Ghost'}</div>
+    <div>{initDataUnsafe.user?.username || 'Ghost'}</div>
   )
 }
 
