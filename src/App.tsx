@@ -1,19 +1,13 @@
-import { useInitData } from '@vkruglikov/react-telegram-web-app'
-import './app.css'
+import { Container } from "@mantine/core"
+import Header from "./components/Header"
+import { Outlet } from "react-router-dom"
 
 const App = () => {
-  const [initDataUnsafe] = useInitData()
-
-  console.log(initDataUnsafe.user);
-  console.log(initDataUnsafe);
-
   return (
-    <div>
-      {initDataUnsafe.user?.username || 'Ghost'}
-
-      <h1>{JSON.stringify(initDataUnsafe)}</h1>
-      <h2>{JSON.stringify(initDataUnsafe.user)}</h2>
-    </div>
+    <Container p={0}>
+      <Header />
+      <Outlet />
+    </Container>
   )
 }
 

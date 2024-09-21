@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mantine/core": "^7.12.2",
+    "@mantine/hooks": "^7.12.2",
     "@vkruglikov/react-telegram-web-app": "^2.1.9",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.26.2",
+    "scss": "^0.2.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -23,6 +27,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "sass-embedded": "^1.79.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
