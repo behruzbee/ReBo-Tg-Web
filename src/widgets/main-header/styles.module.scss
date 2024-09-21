@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: max-content;
+  border-bottom: 1px solid gray;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  .logo {
+    margin: 10px;
+
+    a {
+      text-decoration: none;
+      color: #4263eb;
+    }
+  }
+
+  .icon {
+    color: #fff;
+    font-size: 22px;
+  }
+}

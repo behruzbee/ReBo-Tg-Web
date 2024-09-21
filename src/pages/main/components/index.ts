@@ -1,0 +1,1 @@
+export {default as MiniCards} from './mini-cards'
