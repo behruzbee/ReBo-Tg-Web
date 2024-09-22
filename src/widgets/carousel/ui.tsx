@@ -1,11 +1,11 @@
-import { type CarouselProps as IMCarouselProps, Carousel as MCarousel } from '@mantine/carousel';
+import { type CarouselProps as IMCarouselProps,Carousel as MCarousel } from '@mantine/carousel';
 import { Image } from '@mantine/core';
 
 import { ISlide } from './types';
 interface ICarouselProps {
     slides: ISlide[],
     CarouselProps?: IMCarouselProps,
-    CarouselSlideProps?: IMCarouselSlideProps
+    CarouselSlideProps?: any
 }
 
 const Carousel = ({ slides, CarouselProps, CarouselSlideProps }: ICarouselProps) => {
