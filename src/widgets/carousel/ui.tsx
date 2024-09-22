@@ -1,18 +1,21 @@
-import { Carousel as MCarousel } from '@mantine/carousel';
+import { type CarouselProps as IMCarouselProps, Carousel as MCarousel } from '@mantine/carousel';
 import { Image } from '@mantine/core';
 
-const Carousel = () => {
+import { ISlide } from './types';
+interface ICarouselProps {
+    slides: ISlide[],
+    CarouselProps?: IMCarouselProps,
+    CarouselSlideProps?: IMCarouselSlideProps
+}
+
+const Carousel = ({ slides, CarouselProps, CarouselSlideProps }: ICarouselProps) => {
     return (
-        <MCarousel loop withControls={false}>
-            <MCarousel.Slide>
-                <Image src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-1.png" radius='12px' />
-            </MCarousel.Slide>
-            <MCarousel.Slide>
-                <Image src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-2.png" radius='12px' />
-            </MCarousel.Slide>
-            <MCarousel.Slide>
-                <Image src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-3.png" radius='12px' />
-            </MCarousel.Slide>
+        <MCarousel loop {...CarouselProps} >
+            {slides.map(slide => (
+                <MCarousel.Slide key={slide.imageUrl} h='50px' {...CarouselSlideProps}>
+                    <Image src={slide.imageUrl} alt={slide.alt} height='100%' radius='12px' fit='contain' />
+                </MCarousel.Slide>
+            ))}
         </MCarousel>
     )
 }

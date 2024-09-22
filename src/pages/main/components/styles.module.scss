@@ -1,7 +1,14 @@
 .wrapper {
+  display: flex;
   height: 100px;
+  overflow-x: auto;
+  column-gap: 10px;
+  cursor: pointer;
+
   .item {
-    max-width: 80px;
+    min-width: 60px;
+    user-select: none;
+
     img {
       height: 60px;
     }
@@ -11,5 +18,9 @@
       font-size: 11px;
       font-weight: 600;
     }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

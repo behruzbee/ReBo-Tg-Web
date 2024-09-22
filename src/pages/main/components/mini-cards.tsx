@@ -1,62 +1,29 @@
 import { Image } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
 
 import styles from './styles.module.scss'
+import { useNavigate } from 'react-router-dom'
 
-const MiniCards = () => {
+interface IMiniCardsProps {
+    categories: { imageUrl: string, name: string, path: string }[]
+}
+
+const MiniCards = ({ categories }: IMiniCardsProps) => {
+    const navigate = useNavigate()
+
     return (
-        <Carousel className={styles.wrapper} align="start" slideGap="sm" loop withControls={false}>
-            <Carousel.Slide className={styles.item}>
-                <div>
+        <div className={styles.wrapper} >
+            {categories.map(category => (
+                <div key={category.name} className={styles.item} onClick={() => navigate(category.path)}>
                     <Image
-                        src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-2.png"
+                        src={category.imageUrl}
+                        alt={category.name}
                         w='100%'
                         radius='8px'
                     />
-                    <p className={styles.text}>Telefonlar</p>
+                    <p className={styles.text}>{category.name}</p>
                 </div>
-            </Carousel.Slide>
-            <Carousel.Slide className={styles.item}>
-                <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-3.png"
-                    w='100%'
-                    radius='8px'
-                />
-                <p className={styles.text}>Telefonlar</p>
-            </Carousel.Slide>
-            <Carousel.Slide className={styles.item}>
-                <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png"
-                    w='100%'
-                    radius='8px'
-                />
-                <p className={styles.text}>Telefonlar</p>
-            </Carousel.Slide>
-            <Carousel.Slide className={styles.item}>
-                <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-5.png"
-                    w='100%'
-                    radius='8px'
-                />
-                <p className={styles.text}>Telefonlar</p>
-            </Carousel.Slide>
-            <Carousel.Slide className={styles.item}>
-                <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-6.png"
-                    w='100%'
-                    radius='8px'
-                />
-                <p className={styles.text}>Telefonlar</p>
-            </Carousel.Slide>
-            <Carousel.Slide className={styles.item}>
-                <Image
-                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png"
-                    w='100%'
-                    radius='8px'
-                />
-                <p className={styles.text}>Telefonlar</p>
-            </Carousel.Slide>
-        </Carousel>
+            ))}
+        </div>
     )
 }
 

@@ -2,16 +2,20 @@ import { Product } from '~entities/product'
 
 import styles from './styles.module.scss'
 
-const ProductList = () => {
+interface IProductListProps {
+    title: string,
+    products: { id: string, imageUrl: string, name: string, price: number }[]
+}
+
+const ProductList = ({ title, products }: IProductListProps) => {
     return (
         <div className={styles.wrapper}>
-            <h3 className={styles.title}>Telefonlar</h3>
+            <h3 className={styles.title}>{title}</h3>
 
             <div className={styles['product-list']}>
-                <Product />
-                <Product />
-                <Product />
-                <Product />
+                {products.map(product => (
+                    <Product key={product.id} {...product}/>
+                ))}
             </div>
         </div>
     )
