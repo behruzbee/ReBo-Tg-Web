@@ -38,7 +38,7 @@ const ProductPage = () => {
         </div>
       </div>
 
-      <Button className={styles.buyButton}>Korzinkaga qo'shish <i class='bx bx-cart-add' ></i></Button>
+      <Button className={styles.buyButton}>Korzinkaga qo'shish <i className='bx bx-cart-add' ></i></Button>
     </div>
   )
 }
