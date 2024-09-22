@@ -3,7 +3,7 @@ import { Image } from '@mantine/core';
 
 const Carousel = () => {
     return (
-        <MCarousel loop>
+        <MCarousel loop withControls={false}>
             <MCarousel.Slide>
                 <Image src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-1.png" radius='12px' />
             </MCarousel.Slide>

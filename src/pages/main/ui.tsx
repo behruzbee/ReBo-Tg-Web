@@ -5,6 +5,7 @@ import { Carousel } from "~widgets/carousel"
 
 import styles from './styles.module.scss'
 import { MiniCards } from "./components"
+import { ProductList } from "~widgets/product-list"
 
 const MainPage = () => {
     return (
@@ -12,6 +13,9 @@ const MainPage = () => {
             <MainHeader />
             <Carousel />
             <MiniCards />
+            <ProductList />
+            <ProductList />
+            <ProductList />
         </Container>
     )
 }
