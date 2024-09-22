@@ -1,0 +1,40 @@
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  .nav {
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    .button {
+      padding: 5px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 18px;
+    }
+
+    .totalSum {
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+
+      i {
+        font-size: 22px;
+      }
+    }
+  }
+
+  .buyButton {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

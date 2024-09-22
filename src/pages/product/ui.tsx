@@ -12,6 +12,10 @@ const ProductPage = () => {
     navigate(-1)
   }
 
+  const handleBuyButton = () => {
+    navigate('/basket')
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageWrapper}>
@@ -38,7 +42,7 @@ const ProductPage = () => {
         </div>
       </div>
 
-      <Button className={styles.buyButton}>Korzinkaga qo'shish <i className='bx bx-cart-add' ></i></Button>
+      <Button className={styles.buyButton} onClick={handleBuyButton}>Korzinkaga qo'shish <i className='bx bx-cart-add' ></i></Button>
     </div>
   )
 }
