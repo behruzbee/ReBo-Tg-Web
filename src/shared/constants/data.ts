@@ -1,13 +1,13 @@
 export const slides = [
   {
     imageUrl:
-      'https://images.samsung.com/is/image/samsung/assets/uz_ru/about-us/brand/logo/mo/256_144_1.png?$512_N_PNG$',
-    alt: 'Samsung'
+      'https://www.creativefabrica.com/wp-content/uploads/2022/09/01/Green-Lion-Head-Logo-Template-Graphics-37545819-1.png',
+    alt: 'Green Lion'
   },
   {
     imageUrl:
-      'https://www.creativefabrica.com/wp-content/uploads/2022/09/01/Green-Lion-Head-Logo-Template-Graphics-37545819-1.png',
-    alt: 'Green Lion'
+      'https://images.samsung.com/is/image/samsung/assets/uz_ru/about-us/brand/logo/mo/256_144_1.png?$512_N_PNG$',
+    alt: 'Samsung'
   },
   {
     imageUrl: 'https://www.menlynpark.co.za/wp-content/uploads/2023/08/255.jpg',

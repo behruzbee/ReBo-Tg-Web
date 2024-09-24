@@ -2,6 +2,7 @@ import { Button, Card, Image, Text } from "@mantine/core"
 
 import styles from './styles.module.scss'
 import { useNavigate } from "react-router-dom"
+import { useBasketStore } from "~shared/store"
 
 interface IProductProps {
     id: string,
@@ -12,10 +13,17 @@ interface IProductProps {
 
 const Product = ({ id, imageUrl, name, price }: IProductProps) => {
     const navigate = useNavigate()
+    const addProductToBasket = useBasketStore(({ addProduct }) => addProduct)
 
     const handleClick = () => {
         navigate(`/product/${id}`)
     }
+
+    const handleAddProduct = (e: React.MouseEvent) => {
+        // Prevent the click from propagating to the parent card
+        e.stopPropagation();
+        addProductToBasket({ id, imageUrl, name, price });
+      };
 
     return (
         <Card className={styles.card} onClick={handleClick} shadow="sm" withBorder p={5} h='100%'>
@@ -32,7 +40,7 @@ const Product = ({ id, imageUrl, name, price }: IProductProps) => {
                 {name}
             </Text>
 
-            <Button className={styles.button} color="violet" fullWidth size="compact-sm" radius="sm">
+            <Button onClick={handleAddProduct} className={styles.button} color="violet" fullWidth size="compact-sm" radius="sm">
                 {String(price).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} so'm
             </Button>
         </Card>

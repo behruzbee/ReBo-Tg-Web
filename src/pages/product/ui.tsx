@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Carousel } from "~widgets/carousel";
 import { productsCategory } from "~shared/constants";
+import { useBasketStore } from "~shared/store";
 
 import styles from './styles.module.scss';
 
 const ProductPage = () => {
   const navigate = useNavigate()
   const { productId } = useParams<{ productId: string }>()
+  const addToBasket = useBasketStore(({ addProduct }) => addProduct)
 
   const handleBackButton = () => {
     navigate(-1)
@@ -16,6 +18,7 @@ const ProductPage = () => {
 
   const handleBuyButton = () => {
     navigate('/basket')
+    addToBasket(product)
   }
 
   const product = productsCategory.flatMap(category => category.products).find(({ id }) => id === productId) || { id: '1', imageUrl: '', name: '', price: 22 }
@@ -23,7 +26,7 @@ const ProductPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageWrapper}>
-        <Carousel CarouselSlideProps={{h: '50vh'}} slides={[{ imageUrl: product.imageUrl, alt: product.name }]} />
+        <Carousel CarouselSlideProps={{ h: '50vh' }} slides={[{ imageUrl: product.imageUrl, alt: product.name }]} />
         <Button className={styles.backButton} onClick={handleBackButton} variant="white" w={40} h={40} p={1} radius={100}>
           <i className='bx bx-arrow-back'></i>
         </Button>
