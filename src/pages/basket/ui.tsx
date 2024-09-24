@@ -9,8 +9,8 @@ const BasketPage = () => {
     const selectedProducts = useBasketStore(({ products }) => products)
     const [count, setCount] = useState<number>(selectedProducts.length)
 
-    function handleInput(e) {
-        const value = e.target.value
+    function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
+        const value = Number(e.target.value)
         if (value > 99) {
             return setCount(99)
         }
