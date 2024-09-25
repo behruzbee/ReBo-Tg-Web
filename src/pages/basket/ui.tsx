@@ -1,40 +1,55 @@
 import { Button, Grid, Image, Text } from "@mantine/core"
 
 import { useBasketStore } from "~shared/store"
+import { Loader } from "~shared/ui/loader"
 
 import styles from './styles.module.scss'
-import { useState } from "react"
 
 const BasketPage = () => {
     const selectedProducts = useBasketStore(({ products }) => products)
-    const [count, setCount] = useState<number>(selectedProducts.length)
+    const addProduct = useBasketStore(({ addProduct }) => addProduct)
+    const removeProduct = useBasketStore(({ removeProduct }) => removeProduct)
 
-    function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
+    function handleInput(e: React.ChangeEvent<HTMLInputElement>, productId: string) {
         const value = Number(e.target.value)
+        const product = selectedProducts.find(item => item.id === productId)
         if (value > 99) {
-            return setCount(99)
+            return addProduct({ ...product, count: 99 })
         }
         else if (value < 1) {
-            return setCount(1)
+            return addProduct({ ...product, count: 1 })
         }
-        setCount(value)
+        addProduct({ ...product, count: value })
     }
 
-    function handleRemoveButton() {
-        if (count == 1) {
+    function handleRemoveButton(productId: string) {
+        const product = selectedProducts.find(item => item.id === productId)
+
+        if (!product) {
             return null
         }
 
-        return setCount(count - 1)
+        if (product.count === 1) {
+            return removeProduct(productId)
+        }
+
+        return addProduct({ ...product, count: product.count - 1 })
     }
 
-    function handleAddButton() {
-        if (count == 99) {
+    function handleAddButton(productId: string) {
+        const product = selectedProducts.find(item => item.id === productId)
+
+        if (!product || product.count == 99) {
             return null
         }
 
-        return setCount(count + 1)
+        return addProduct({ ...product, count: product.count + 1 })
     }
+
+    if (!selectedProducts) {
+        return <Loader />
+    }
+
 
     return (
         <Grid mt={10} p='0 5px'>
@@ -45,12 +60,12 @@ const BasketPage = () => {
                             <div className={styles.image}>
                                 <Image src={product.imageUrl} />
                             </div>
-                            <Text size="sm">{product.name} <Text c='green' w='max-content' fw={500}>{product.price}</Text></Text>
+                            <Text size="sm">{product.name} <Text c='green' w='max-content' fw={500}>{String(product.price).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} so'm x {product.count}</Text></Text>
                         </div>
                         <div className={styles.buttonGroup}>
-                            <Button onClick={handleRemoveButton} variant="outline" color="red" size="compact-sm" className={styles.buttonRemove}>-</Button>
-                            <input style={{ padding: count <= 9 ? '0 8px' : '0 3px' }} value={count} onChange={handleInput} className={styles.input} />
-                            <Button onClick={handleAddButton} color="green" size="compact-sm" className={styles.buttonAdd}>+</Button>
+                            <Button onClick={() => handleRemoveButton(product.id)} variant="outline" color="red" size="compact-sm" className={styles.buttonRemove}>-</Button>
+                            <input type="number" style={{ padding: product.count <= 9 ? '0 8px' : '0 3px' }} value={product.count} onChange={(e) => handleInput(e, product.id)} className={styles.input} />
+                            <Button onClick={() => handleAddButton(product.id)} color="green" size="compact-sm" className={styles.buttonAdd}>+</Button>
                         </div>
                     </div>
                 </Grid.Col>

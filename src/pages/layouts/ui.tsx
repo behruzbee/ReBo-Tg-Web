@@ -2,9 +2,21 @@ import { Outlet, useNavigate } from "react-router-dom"
 import { Button } from "@mantine/core"
 
 import styles from './styles.module.scss'
+import { useBasketStore } from "~shared/store"
+import { useMemo } from "react"
 
 const LayoutPage = () => {
     const navigate = useNavigate()
+    const products = useBasketStore(({ products }) => products)
+
+    const totalPrice = useMemo(() => {
+        if (!products.length) {
+            return 0;
+        }
+        return products.reduce((prev, curr) => {
+            return prev + (curr.price * curr.count);
+        }, 0);
+    }, [products]);
 
     const handleBackButton = () => {
         navigate('/')
@@ -23,7 +35,7 @@ const LayoutPage = () => {
 
                 <p className={styles.totalSum}>
                     <i className='bx bx-bitcoin'></i>
-                    102.400 so'm
+                    {String(totalPrice).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} so'm
                 </p>
             </div>
 

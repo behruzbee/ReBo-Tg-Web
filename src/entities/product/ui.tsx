@@ -3,6 +3,7 @@ import { Button, Card, Image, Text } from "@mantine/core"
 import styles from './styles.module.scss'
 import { useNavigate } from "react-router-dom"
 import { useBasketStore } from "~shared/store"
+import { useRef } from "react"
 
 interface IProductProps {
     id: string,
@@ -12,6 +13,7 @@ interface IProductProps {
 }
 
 const Product = ({ id, imageUrl, name, price }: IProductProps) => {
+    const countRef = useRef(0)
     const navigate = useNavigate()
     const addProductToBasket = useBasketStore(({ addProduct }) => addProduct)
 
@@ -20,9 +22,8 @@ const Product = ({ id, imageUrl, name, price }: IProductProps) => {
     }
 
     const handleAddProduct = (e: React.MouseEvent) => {
-        // Prevent the click from propagating to the parent card
         e.stopPropagation();
-        addProductToBasket({ id, imageUrl, name, price });
+        addProductToBasket({ id, imageUrl, name, price, count: ++countRef.current });
       };
 
     return (

@@ -11,14 +11,21 @@ const ProductPage = () => {
   const navigate = useNavigate()
   const { productId } = useParams<{ productId: string }>()
   const addToBasket = useBasketStore(({ addProduct }) => addProduct)
+  const basketProducts = useBasketStore(({ products }) => products)
 
   const handleBackButton = () => {
     navigate(-1)
   }
 
   const handleBuyButton = () => {
+    const findProduct = basketProducts.find((item) => item.id === productId)
+    if (findProduct) {
+      addToBasket({ ...product, count: findProduct.count + 1 })
+    } else {
+      addToBasket(product)
+    }
+
     navigate('/basket')
-    addToBasket(product)
   }
 
   const product = productsCategory.flatMap(category => category.products).find(({ id }) => id === productId) || { id: '1', imageUrl: '', name: '', price: 22 }

@@ -1,11 +1,15 @@
 .header {
+  position: fixed;
+  width: 94%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: max-content;
   border-bottom: 1px solid gray;
+  background-color: #fff;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  z-index: 199;
 
   .logo {
     margin: 10px;
