@@ -13,7 +13,7 @@ import { MiniCards } from "./components"
 const MainPage = () => {
 
     if (!slides || !categories || !productsCategory) {
-        return Loader
+        return <Loader />
     }
 
     return (
