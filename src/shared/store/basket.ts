@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 // Define a type for the Product
 interface Product {
-  id: string
+  id: string 
   [key: string]: any
 }
 

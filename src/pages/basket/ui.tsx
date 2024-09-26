@@ -13,6 +13,11 @@ const BasketPage = () => {
     function handleInput(e: React.ChangeEvent<HTMLInputElement>, productId: string) {
         const value = Number(e.target.value)
         const product = selectedProducts.find(item => item.id === productId)
+
+        if(!product){
+            return
+        }
+
         if (value > 99) {
             return addProduct({ ...product, count: 99 })
         }
