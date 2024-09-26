@@ -19,7 +19,7 @@ const MainPage = () => {
     return (
         <Container className={styles.container} pb='20px' pos='relative'>
             <MainHeader />
-            <Carousel CarouselSlideProps={{ h: '200px' }} slides={slides} />
+            <Carousel CarouselProps={{style: {marginTop: '70px'}}} CarouselSlideProps={{ h: '200px' }} slides={slides} />
             <MiniCards categories={categories} />
             {productsCategory.map(category => (
                 <ProductList key={category.title} title={category.title} products={category.products} />
